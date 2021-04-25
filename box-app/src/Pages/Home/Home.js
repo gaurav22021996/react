@@ -6,8 +6,6 @@ import styles from './Home.module.scss';
 const boxMatrix = [[1, 2, 3, 4], [5, 6, 7, 8], [1, 2, 3, 4], [5, 6, 7, 8]];
 const boundaries = GetBoundaryElementIndex(boxMatrix, 4, 4);
 
-// const areEqual = (prevProps, nextProps) => true;
-
 const Home = props => {
   const [matrix, setMatrix] = useState(boxMatrix);
 
@@ -46,7 +44,12 @@ const Home = props => {
     })
     if (checkNotBoundaryIndex !== -1) {
       console.log('recursion');
-      GetRandonSurroundingElementIndex();
+      GetRandonSurroundingElementIndex(boxIndex, parentIndex);
+      return;
+    }
+    if (surroundingIndex[randomIndex] === undefined) {
+      console.log('recursion');
+      GetRandonSurroundingElementIndex(boxIndex, parentIndex);
       return;
     }
     return surroundingIndex[randomIndex];
